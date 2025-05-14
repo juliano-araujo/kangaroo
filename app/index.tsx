@@ -1,4 +1,4 @@
-import { Stack, Link } from 'expo-router';
+import { Link, Stack } from 'expo-router';
 
 import { Button } from '~/components/Button';
 import { Container } from '~/components/Container';
