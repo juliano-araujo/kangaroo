@@ -13,6 +13,12 @@ export default function Home() {
         <Link href={{ pathname: '/details', params: { name: 'Dan' } }} asChild>
           <Button title="Show Details" />
         </Link>
+<<<<<<< HEAD
+=======
+        <Link href="/exercicios" asChild className="mt-4">
+          <Button title="Ver Exercícios" />
+        </Link>
+>>>>>>> 29e8c81 (Initial commit)
       </Container>
     </>
   );
