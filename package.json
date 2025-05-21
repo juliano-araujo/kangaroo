@@ -20,8 +20,10 @@
     "expo-router": "~5.0.3",
     "expo-status-bar": "~2.2.3",
     "expo-system-ui": "~5.0.6",
+    "expo-updates": "~0.28.13",
     "expo-web-browser": "~14.1.6",
     "firebase": "^10.5.2",
+    "lucide-react": "^0.511.0",
     "nativewind": "latest",
     "react": "19.0.0",
     "react-native": "0.79.2",
@@ -33,6 +35,10 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/react": "~19.0.10",
+<<<<<<< HEAD
+=======
+    "@types/react-native": "^0.72.8",
+>>>>>>> 29e8c81 (Initial commit)
     "ajv": "^8.12.0",
     "eslint": "^9.25.1",
     "eslint-config-expo": "^9.2.0",
