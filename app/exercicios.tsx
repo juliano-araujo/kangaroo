@@ -3,8 +3,9 @@
 import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { Stack, Link } from 'expo-router';
 import React from 'react';
-import { FontAwesome5 } from '@expo/vector-icons'; 
-
+//import { Dumbbell } from 'lucide-react-native';
+//import { createIcons, icons } from 'lucide';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 // Lista de exercícios
 const exerciciosData = [
@@ -39,7 +40,7 @@ export default function ExerciciosScreen() {
   {exerciciosData.map((item) => (     //aqui é p ir p tela la de carga
     <Link key={item.id} href="/cargas" asChild>
       <TouchableOpacity className="bg-white p-4 rounded-xl shadow-md mb-4 flex-row items-center border border-gray-200">
-        <FontAwesome5 name={item.icon} size={24} color="#4A5568" className="mr-4" />
+        <FontAwesome5 name="dumbbell" size={28} color="#4A5568" className="mr-4" />
         <Text className="text-lg text-gray-700 font-semibold">{item.name}</Text>
       </TouchableOpacity>
     </Link>

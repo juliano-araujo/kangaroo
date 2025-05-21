@@ -20,16 +20,17 @@
     "expo-router": "~5.0.3",
     "expo-status-bar": "~2.2.3",
     "expo-system-ui": "~5.0.6",
+    "expo-updates": "~0.28.13",
     "expo-web-browser": "~14.1.6",
     "firebase": "^10.5.2",
+    "lucide-react": "^0.511.0",
     "nativewind": "latest",
     "react": "19.0.0",
     "react-native": "0.79.2",
     "react-native-gesture-handler": "~2.24.0",
     "react-native-reanimated": "~3.17.4",
     "react-native-safe-area-context": "5.4.0",
-    "react-native-screens": "~4.10.0",
-    "expo-updates": "~0.28.13"
+    "react-native-screens": "~4.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
