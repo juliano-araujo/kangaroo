@@ -35,9 +35,7 @@ export default function ExerciseList() {
         contentContainerStyle={styles.list}
         renderItem={({ item }) => (
           <View style={styles.card}>
-            <View style={styles.iconContainer}>
-              <Ionicons name="bicycle-outline" size={28} color="#4F46E5" />
-            </View>
+            <Ionicons name="bicycle-outline" size={28} color="#000" />
             <Text style={styles.cardText}>{item.name}</Text>
           </View>
         )}
@@ -88,30 +86,23 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#fff',
-    padding: 20,
-    height: 80, // Aumentei a altura do cartão
-    borderRadius: 12,
+    paddingVertical: 28, // Aumentei o padding vertical
+    paddingHorizontal: 24,
+    minHeight: 100, // Altura mínima aumentada
+    borderRadius: 16, // Bordas mais arredondadas
     borderWidth: 1,
     borderColor: '#E5E7EB',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.05,
-    shadowRadius: 2,
-    elevation: 1,
+    shadowRadius: 4,
+    elevation: 2,
   },
   cardText: { 
-    fontSize: 18, // Tamanho da fonte aumentado
+    fontSize: 18,
     marginLeft: 16,
     color: '#1F2937',
-    fontWeight: '600', // Fonte um pouco mais grossa
+    fontWeight: '600',
     lineHeight: 24,
-  },
-  iconContainer: {
-    width: 48,
-    height: 48,
-    borderRadius: 12,
-    backgroundColor: '#EEF2FF', // Fundo azul claro para o ícone
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
