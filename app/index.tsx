@@ -12,7 +12,7 @@ export default function Home() {
       <Container>
         <ScreenContent path="app/index.tsx" title="Bem-vindo ao Kangaroo"></ScreenContent>
         <View style={{ gap: 12, width: '100%' }}>
-          <Link href="/exercises" asChild>
+          <Link href="/exercicios_aerobicos" asChild>
             <Button title="Ver Exercícios" />
           </Link>
           <Link href={{ pathname: '/details', params: { name: 'Usuário' } }} asChild>

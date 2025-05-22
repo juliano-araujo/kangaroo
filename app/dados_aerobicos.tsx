@@ -11,25 +11,23 @@ export default function ExerciseTrackingScreen({ onBack }: ExerciseTrackingScree
     exerciseName?: string;
   }>();
   
-  // Dados atuais (somente leitura)
   const currentStats = {
     distance: '2.5 km',
     time: '15:30 min',
   };
 
-  // Estado para os novos valores (será implementado posteriormente)
   const newDistance = '';
   const newTime = '';
 
   return (
     <View style={styles.container}>
-      {/* Cabeçalho */}
+      {}
       <View style={styles.header}>
         <Text style={styles.headerTitle}>{exerciseName}</Text>
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        {/* Seção de Estatísticas Atuais */}
+        {}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Seu Progresso Atual</Text>
           
@@ -52,7 +50,7 @@ export default function ExerciseTrackingScreen({ onBack }: ExerciseTrackingScree
           </View>
         </View>
 
-        {/* Seção de Nova Meta */}
+        {}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Novo Recorde</Text>
           
@@ -65,7 +63,7 @@ export default function ExerciseTrackingScreen({ onBack }: ExerciseTrackingScree
                 placeholder="Ex: 3.5"
                 keyboardType="numeric"
                 value={newDistance}
-                // onChangeText será implementado posteriormente
+                
               />
             </View>
           </View>
@@ -79,7 +77,7 @@ export default function ExerciseTrackingScreen({ onBack }: ExerciseTrackingScree
                 placeholder="Ex: 30"
                 keyboardType="numeric"
                 value={newTime}
-                // onChangeText será implementado posteriormente
+                
               />
             </View>
           </View>

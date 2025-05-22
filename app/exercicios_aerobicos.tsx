@@ -19,9 +19,8 @@ export default function ExerciseList() {
   const router = useRouter();
   
   const handleTrackExercise = (exercise: Exercise) => {
-    // @ts-ignore - Ignorando erro de tipo temporariamente
     router.push({
-      pathname: '/tracking',
+      pathname: '/dados_aerobicos',
       params: { 
         exerciseId: exercise.id,
         exerciseName: exercise.name
