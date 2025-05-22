@@ -1,17 +1,18 @@
 import { Stack, useLocalSearchParams } from 'expo-router';
+import { BackButton } from '~/components/BackButton';
 
 import { Container } from '~/components/Container';
-import { ScreenContent } from '~/components/ScreenContent';
+import { QuantitySelector } from '~/components/QuantitySelector';
 
 export default function Details() {
-  const { name } = useLocalSearchParams();
-
   return (
     <>
       <Stack.Screen options={{ title: 'Details' }} />
       <Container>
-        <ScreenContent path="screens/details.tsx" title={`Showing details for user ${name}`} />
+        <QuantitySelector />
       </Container>
+
+      <BackButton />
     </>
   );
 }
