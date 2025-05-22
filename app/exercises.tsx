@@ -1,7 +1,7 @@
-import { View, Text, FlatList, StyleSheet, Image, ImageSourcePropType } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Image, ImageSourcePropType, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { Link } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 
 interface Exercise {
   id: string;
@@ -16,6 +16,18 @@ const exercises: Exercise[] = [
 ];
 
 export default function ExerciseList() {
+  const router = useRouter();
+  
+  const handleTrackExercise = (exercise: Exercise) => {
+    // @ts-ignore - Ignorando erro de tipo temporariamente
+    router.push({
+      pathname: '/tracking',
+      params: { 
+        exerciseId: exercise.id,
+        exerciseName: exercise.name
+      }
+    });
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -34,10 +46,16 @@ export default function ExerciseList() {
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.list}
         renderItem={({ item }) => (
-          <View style={styles.card}>
-            <Ionicons name="bicycle-outline" size={28} color="#000" />
-            <Text style={styles.cardText}>{item.name}</Text>
-          </View>
+          <TouchableOpacity 
+            style={styles.card}
+            onPress={() => handleTrackExercise(item)}
+          >
+            <View style={styles.cardContent}>
+              <Ionicons name="bicycle-outline" size={28} color="#000" />
+              <Text style={styles.cardText}>{item.name}</Text>
+            </View>
+            <Ionicons name="chevron-forward" size={20} color="#9CA3AF" />
+          </TouchableOpacity>
         )}
       />
 
@@ -85,24 +103,27 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
     backgroundColor: '#fff',
-    paddingVertical: 28, // Aumentei o padding vertical
-    paddingHorizontal: 24,
-    minHeight: 100, // Altura mínima aumentada
-    borderRadius: 16, // Bordas mais arredondadas
-    borderWidth: 1,
-    borderColor: '#E5E7EB',
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 12,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 2,
+    shadowRadius: 2,
+    elevation: 1,
+    height: 80,
+  },
+  cardContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   cardText: { 
-    fontSize: 18,
+    fontSize: 22,
     marginLeft: 16,
     color: '#1F2937',
     fontWeight: '600',
-    lineHeight: 24,
+    lineHeight: 28,
   },
 });

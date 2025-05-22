@@ -70,6 +70,13 @@ export default function Layout() {
           headerBackTitle: 'Voltar',
         }}
       />
+      <Stack.Screen
+        name="tracking"
+        options={{
+          title: 'Acompanhamento',
+          headerBackTitle: 'Voltar',
+        }}
+      />
       </Stack>
     </View>
   );
