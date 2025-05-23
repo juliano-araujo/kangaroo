@@ -1,9 +1,12 @@
 import { SafeAreaView } from 'react-native';
+import { cn } from '~/utils/tailwind';
 
-export const Container = ({ children }: { children: React.ReactNode }) => {
-  return <SafeAreaView className={styles.container}>{children}</SafeAreaView>;
-};
-
-const styles = {
-  container: 'flex flex-1 m-6',
+export const Container = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  return <SafeAreaView className={cn('m-6 flex flex-1', className)}>{children}</SafeAreaView>;
 };

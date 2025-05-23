@@ -15,7 +15,7 @@ export default function CargasScreen() {
     <>
       <Stack.Screen options={{ title: 'Detalhes da Carga', headerShown: false }} />
 
-      <ScrollView className="flex-1 bg-white">
+      <ScrollView className="flex-1 bg-background">
         {/*  Tela de Cargas */}
         <View className="p-6">
           {/* Informação do Exercício */}
