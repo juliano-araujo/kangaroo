@@ -3,9 +3,8 @@ import { Stack } from 'expo-router';
 import { useState } from 'react';
 import { Alert, ScrollView, Text, View } from 'react-native';
 
-import { BackButton } from '~/components/BackButton';
+import { Button } from '~/components/Button';
 import { QuantitySelector } from '~/components/QuantitySelector';
-import { UpdateLoadButton } from '~/components/UpdateLoadButton';
 
 export default function Dias() {
   const [diasSelecionados, setDiasSelecionados] = useState(0);
@@ -28,17 +27,15 @@ export default function Dias() {
           </View>
 
           {/* Centralizar QuantitySelector e botão */}
-          <View className="flex-1 items-center justify-center">
+          <View className="flex-1 items-center justify-between">
             <QuantitySelector value={diasSelecionados} onChange={setDiasSelecionados} />
 
-            <View className="mt-8">
-              <UpdateLoadButton onPress={handleSalvarDias} label="Salvar Dias" />
+            <View className="mt-8 w-full">
+              <Button onPress={handleSalvarDias} title="Salvar Dias" />
             </View>
           </View>
         </View>
       </ScrollView>
-
-      <BackButton />
     </>
   );
 }
