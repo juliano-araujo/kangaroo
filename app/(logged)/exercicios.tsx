@@ -11,20 +11,6 @@ const exerciciosData = [
   { id: '5', name: 'Exercício 5', icon: 'dumbbell' as const },
 ];
 
-const BackButton = () => {
-  const router = useRouter();
-
-  return (
-    <View className="absolute bottom-6 left-6">
-      <TouchableOpacity
-        onPress={() => router.back()}
-        className="rounded-full bg-orange-400 p-4 shadow-lg">
-        <Ionicons name="arrow-back" size={24} color="white" />
-      </TouchableOpacity>
-    </View>
-  );
-};
-
 export default function ExerciciosScreen() {
   return (
     <>
@@ -41,7 +27,6 @@ export default function ExerciciosScreen() {
           ))}
         </View>
       </ScrollView>
-      <BackButton />
     </>
   );
 }

@@ -1,16 +1,15 @@
-import { View } from 'react-native';
-import CustomButton from '../components/CustomButton'; // caminho relativo
+import { SafeAreaView } from 'react-native-safe-area-context';
+import CustomButton from '~/components/CustomButton';
 
 export default function Home() {
   const buttons = [
     { id: 1, href: '/exercicios', icon: 'dumbbell', name: 'Exercicios' },
     { id: 2, href: '/dias', icon: 'calendar', name: 'Dias' },
-    { id: 3, href: '/usuarios', icon: 'users', name: 'Usuários' },
+    { id: 3, href: '/login', icon: 'users', name: 'Usuários' },
   ];
 
-
   return (
-    <View className="p-4">
+    <SafeAreaView className="p-4">
       {buttons.map((item) => (
         <CustomButton
           key={item.id}
@@ -20,6 +19,6 @@ export default function Home() {
           name={item.name}
         />
       ))}
-    </View>
+    </SafeAreaView>
   );
 }
