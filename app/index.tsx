@@ -1,17 +1,24 @@
-import { Link } from 'expo-router';
 import { View } from 'react-native';
-import { Button } from '~/components/Button';
+import CustomButton from '../components/CustomButton'; // caminho relativo
 
 export default function Home() {
-  return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Link href="/exercicios" asChild>
-        <Button title="Exercicios"></Button>
-      </Link>
+  const buttons = [
+    { id: 1, href: '/exercicios', icon: 'dumbbell', name: 'Exercicios' },
+    { id: 2, href: '/dias', icon: 'calendar', name: 'Dias' },
+    { id: 3, href: '/usuarios', icon: 'users', name: 'Usuários' },
+  ];
 
-      <Link href="/details" asChild>
-        <Button title="Detalhes(trocar nome)"></Button>
-      </Link>
+  return (
+    <View className="p-4">
+      {buttons.map((item) => (
+        <CustomButton
+          key={item.id}
+          id={item.id}
+          href={item.href}
+          icon={item.icon}
+          name={item.name}
+        />
+      ))}
     </View>
   );
 }

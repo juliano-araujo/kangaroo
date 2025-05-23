@@ -4,24 +4,20 @@
     "slug": "kangaroo",
     "version": "1.0.0",
     "scheme": "kangaroo",
-    "plugins": [
-      "expo-router"
-    ],
+    "plugins": ["expo-router"],
     "experiments": {
       "typedRoutes": true,
       "tsconfigPaths": true
     },
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/kangaroo_logo.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
