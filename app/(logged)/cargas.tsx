@@ -2,7 +2,7 @@ import { FontAwesome5 } from '@expo/vector-icons'; // Ícones para halter e volt
 import { Stack, useRouter } from 'expo-router'; // useRouter para o lindo botão de voltar
 import { ScrollView, Text, TextInput, View } from 'react-native';
 import { BackButton } from '~/components/BackButton';
-import { UpdateLoadButton } from '~/components/UpdateLoadButton';
+import { Button } from '~/components/Button';
 
 export default function CargasScreen() {
   const router = useRouter();
@@ -15,7 +15,7 @@ export default function CargasScreen() {
     <>
       <Stack.Screen options={{ title: 'Detalhes da Carga', headerShown: false }} />
 
-      <ScrollView className="flex-1 bg-white">
+      <ScrollView className="flex-1 bg-background">
         {/*  Tela de Cargas */}
         <View className="p-6">
           {/* Informação do Exercício */}
@@ -43,11 +43,12 @@ export default function CargasScreen() {
           </View>
 
           {/* Botão Atualizar Carga */}
-          <UpdateLoadButton onPress={() => console.log('Botão Atualizar Carga pressionado!')} />
+          <Button
+            title="Atualizar Carga"
+            onPress={() => console.log('Botão Atualizar Carga pressionado!')}
+          />
         </View>
       </ScrollView>
-
-      <BackButton />
     </>
   );
 }

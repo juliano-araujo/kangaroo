@@ -1,25 +1,24 @@
-import { Link, Stack } from 'expo-router';
-import { View } from 'react-native';
-
-import { Button } from '~/components/Button';
-import { Container } from '~/components/Container';
-import { ScreenContent } from '~/components/ScreenContent';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import CustomButton from '~/components/CustomButton';
 
 export default function Home() {
+  const buttons = [
+    { id: 1, href: '/exercicios', icon: 'dumbbell', name: 'Exercicios' },
+    { id: 2, href: '/dias', icon: 'calendar', name: 'Dias' },
+    { id: 3, href: '/login', icon: 'users', name: 'Usuários' },
+  ];
+
   return (
-    <>
-      <Stack.Screen options={{ title: 'Home' }} />
-      <Container>
-        <ScreenContent path="app/index.tsx" title="Bem-vindo ao Kangaroo"></ScreenContent>
-        <View style={{ gap: 12, width: '100%' }}>
-          <Link href="/exercicios_aerobicos" asChild>
-            <Button title="Ver Exercícios" />
-          </Link>
-          <Link href={{ pathname: '/details', params: { name: 'Usuário' } }} asChild>
-            <Button title="Ver Detalhes" variant="outline" />
-          </Link>
-        </View>
-      </Container>
-    </>
+    <SafeAreaView className="p-4">
+      {buttons.map((item) => (
+        <CustomButton
+          key={item.id}
+          id={item.id}
+          href={item.href}
+          icon={item.icon}
+          name={item.name}
+        />
+      ))}
+    </SafeAreaView>
   );
 }
