@@ -5,7 +5,8 @@ export default function Home() {
   const buttons = [
     { id: 1, href: '/exercicios', icon: 'dumbbell', name: 'Exercicios' },
     { id: 2, href: '/dias', icon: 'calendar', name: 'Dias' },
-    { id: 3, href: '/login', icon: 'users', name: 'Usuários' },
+    { id: 3, href: '/login', icon: 'users', name: 'Login' },
+    { id: 4, href: '/dados-aerobicos', icon: 'dumbbell', name: 'Dados Aeróbicos' },
   ];
 
   return (
