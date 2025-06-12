@@ -1,13 +1,13 @@
 import { Link, Stack } from 'expo-router';
 import { FirebaseError } from 'firebase/app';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore'; // Importações adicionais para Firestore
+import { doc, setDoc } from 'firebase/firestore';
 import { useState } from 'react';
 import { Text, View } from 'react-native';
 import { Button } from '~/components/Button';
 import { LoginContainer } from '~/components/login-container';
 import { TextInput } from '~/components/TextInput';
-import { auth, db } from '~/utils/firebase'; // Certifique-se de que 'db' está sendo exportado do seu arquivo firebase
+import { auth, db } from '~/utils/firebase';
 
 export default function RegisterScreen() {
   const [email, setEmail] = useState<string>('');
@@ -37,9 +37,8 @@ export default function RegisterScreen() {
         displayName: displayName.trim()
       });
 
-      // Salvar informações adicionais do usuário no Firestore
+      // Salvar informações adicionais do usuário no Firestore (sem o UID redundante)
       await setDoc(doc(db, 'users', userCredentials.user.uid), {
-        uid: userCredentials.user.uid,
         email: userCredentials.user.email,
         displayName: displayName.trim(),
         createdAt: new Date(),
