@@ -1,18 +1,36 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Stack } from 'expo-router';
 import { useState } from 'react';
 import { Alert, ScrollView, Text, View } from 'react-native';
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from '~/utils/firebase';
+import { useSession } from '~/contexts/session-provider';
 
 import { Button } from '~/components/Button';
 import { QuantitySelector } from '~/components/QuantitySelector';
 
 export default function Dias() {
   const [diasSelecionados, setDiasSelecionados] = useState(0);
+  const { user } = useSession();
 
-  function handleSalvarDias() {
-    // Aqui você pode salvar no asyncStorage, API, etc.
-    Alert.alert('Dias salvos', `Você selecionou ${diasSelecionados} dias.`);
-    console.log('Dias selecionados:', diasSelecionados);
+  async function handleSalvarDias() {
+    if (!user) {
+      Alert.alert('Erro', 'Usuário não autenticado.');
+      return;
+    }
+    if (diasSelecionados < 1) {
+      Alert.alert('Atenção', 'Selecione pelo menos 1 dia.');
+      return;
+    }
+    try {
+      await updateDoc(doc(db, 'users', user.uid), {
+        days: diasSelecionados,
+      });
+      Alert.alert('Dias salvos', `Você selecionou ${diasSelecionados} dias.`);
+    } catch (error) {
+      Alert.alert('Erro', 'Não foi possível salvar os dias.');
+    }
   }
 
   return (
