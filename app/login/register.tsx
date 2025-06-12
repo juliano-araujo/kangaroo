@@ -1,12 +1,13 @@
 import { Link, Stack } from 'expo-router';
 import { FirebaseError } from 'firebase/app';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore'; // Importações adicionais para Firestore
 import { useState } from 'react';
 import { Text, View } from 'react-native';
 import { Button } from '~/components/Button';
 import { LoginContainer } from '~/components/login-container';
 import { TextInput } from '~/components/TextInput';
-import { auth } from '~/utils/firebase';
+import { auth, db } from '~/utils/firebase'; // Certifique-se de que 'db' está sendo exportado do seu arquivo firebase
 
 export default function RegisterScreen() {
   const [email, setEmail] = useState<string>('');
@@ -36,13 +37,26 @@ export default function RegisterScreen() {
         displayName: displayName.trim()
       });
 
+      // Salvar informações adicionais do usuário no Firestore
+      await setDoc(doc(db, 'users', userCredentials.user.uid), {
+        uid: userCredentials.user.uid,
+        email: userCredentials.user.email,
+        displayName: displayName.trim(),
+        createdAt: new Date(),
+      });
+
       alert('Cadastro realizado com sucesso!');
-      console.log('Usuário registrado:', userCredentials.user);
+      
+      // Zerar os campos após o cadastro bem-sucedido
+      setEmail('');
+      setDisplayName('');
+      setPassword('');
+      setConfirmPassword('');
+      
     } catch (error) {
       if (error instanceof FirebaseError) {
         let errorMessage = 'Erro ao cadastrar';
         
-        // Tratamento de erros comuns
         switch (error.code) {
           case 'auth/email-already-in-use':
             errorMessage = 'Este e-mail já está em uso';
