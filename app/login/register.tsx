@@ -3,7 +3,7 @@ import { FirebaseError } from 'firebase/app';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { useState } from 'react';
-import { Text, View } from 'react-native';
+import { Alert, Text, View } from 'react-native';
 import { Button } from '~/components/Button';
 import { LoginContainer } from '~/components/login-container';
 import { TextInput } from '~/components/TextInput';
@@ -18,12 +18,12 @@ export default function RegisterScreen() {
 
   async function handleUserRegister() {
     if (password !== confirmPassword) {
-      alert('As senhas não coincidem');
+      Alert.alert('Erro', 'As senhas não coincidem');
       return;
     }
 
     if (!displayName.trim()) {
-      alert('Por favor, insira um nome de usuário');
+      Alert.alert('Erro', 'Por favor, insira um nome de usuário');
       return;
     }
 
@@ -31,10 +31,10 @@ export default function RegisterScreen() {
 
     try {
       const userCredentials = await createUserWithEmailAndPassword(auth, email, password);
-      
+
       // Atualizar o perfil do usuário com o nome
       await updateProfile(userCredentials.user, {
-        displayName: displayName.trim()
+        displayName: displayName.trim(),
       });
 
       // Salvar informações adicionais do usuário no Firestore (sem o UID redundante)
@@ -44,18 +44,17 @@ export default function RegisterScreen() {
         createdAt: new Date(),
       });
 
-      alert('Cadastro realizado com sucesso!');
-      
+      Alert.alert('Sucesso', 'Cadastro realizado com sucesso!');
+
       // Zerar os campos após o cadastro bem-sucedido
       setEmail('');
       setDisplayName('');
       setPassword('');
       setConfirmPassword('');
-      
     } catch (error) {
       if (error instanceof FirebaseError) {
         let errorMessage = 'Erro ao cadastrar';
-        
+
         switch (error.code) {
           case 'auth/email-already-in-use':
             errorMessage = 'Este e-mail já está em uso';
@@ -69,8 +68,8 @@ export default function RegisterScreen() {
           default:
             errorMessage = error.message;
         }
-        
-        alert(errorMessage);
+
+        Alert.alert('Erro', errorMessage);
       }
     } finally {
       setIsLoading(false);
@@ -87,28 +86,28 @@ export default function RegisterScreen() {
             <Text className="">e melhore sua performance</Text>
           </View>
           <View className="gap-4">
-            <TextInput 
-              placeholder="E-mail" 
-              value={email} 
+            <TextInput
+              placeholder="E-mail"
+              value={email}
               onChangeText={setEmail}
               keyboardType="email-address"
               autoCapitalize="none"
             />
-            <TextInput 
-              placeholder="Nome do usuário" 
-              value={displayName} 
+            <TextInput
+              placeholder="Nome do usuário"
+              value={displayName}
               onChangeText={setDisplayName}
             />
-            <TextInput 
-              placeholder="Senha" 
-              value={password} 
+            <TextInput
+              placeholder="Senha"
+              value={password}
               onChangeText={setPassword}
               secureTextEntry
               autoComplete="password-new"
             />
-            <TextInput 
-              placeholder="Confirmar Senha" 
-              value={confirmPassword} 
+            <TextInput
+              placeholder="Confirmar Senha"
+              value={confirmPassword}
               onChangeText={setConfirmPassword}
               secureTextEntry
               autoComplete="password"
@@ -119,9 +118,9 @@ export default function RegisterScreen() {
           <Link href="/login" asChild>
             <Button className="" variant="secondary" title="Voltar" />
           </Link>
-          <Button 
-            className="flex-1" 
-            title={isLoading ? "Cadastrando..." : "Cadastrar"} 
+          <Button
+            className="flex-1"
+            title={isLoading ? 'Cadastrando...' : 'Cadastrar'}
             onPress={handleUserRegister}
             disabled={isLoading}
           />
