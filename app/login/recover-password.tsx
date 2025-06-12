@@ -25,10 +25,6 @@ export default function RecoverPassword() {
     try {
       await sendPasswordResetEmail(auth, email.trim());
       setEmailSent(true);
-      Alert.alert(
-        'E-mail enviado',
-        'Verifique sua caixa de entrada para as instruções de redefinição de senha'
-      );
     } catch (error) {
       let errorMessage = 'Erro ao enviar e-mail de recuperação';
 
