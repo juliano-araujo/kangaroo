@@ -2,7 +2,7 @@ import { Link, Stack } from 'expo-router';
 import { FirebaseError } from 'firebase/app';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
-import { Text, View } from 'react-native';
+import { Alert, Text, View } from 'react-native';
 import { Button } from '~/components/Button';
 import { LoginContainer } from '~/components/login-container';
 import { TextInput } from '~/components/TextInput';
@@ -17,8 +17,10 @@ export default function EmailScreen() {
       await signInWithEmailAndPassword(auth, userMail, userPass);
     } catch (error) {
       if (error instanceof FirebaseError) {
+        console.log(error);
         const errorMessage = error.message;
-        alert(errorMessage);
+
+        Alert.alert('Erro', errorMessage);
       }
     }
   }
