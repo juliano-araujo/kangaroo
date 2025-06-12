@@ -6,6 +6,7 @@ import { TextInput } from '~/components/TextInput';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '~/utils/firebase';
 import { Ionicons } from '@expo/vector-icons';
+import { FirebaseError } from 'firebase/app';
 
 export default function RecoverPassword() {
   const [email, setEmail] = useState<string>('');
@@ -29,20 +30,20 @@ export default function RecoverPassword() {
       );
     } catch (error) {
       let errorMessage = 'Erro ao enviar e-mail de recuperação';
-      
-      if (error instanceof Error) {
-        switch (error.message) {
-          case 'Firebase: Error (auth/user-not-found).':
+
+      if (error instanceof FirebaseError) {
+        switch (error.code) {
+          case 'auth/user-not-found':
             errorMessage = 'Nenhum usuário encontrado com este e-mail';
             break;
-          case 'Firebase: Error (auth/invalid-email).':
+          case 'auth/invalid-email':
             errorMessage = 'E-mail inválido';
             break;
           default:
-            errorMessage = error.message;
+            errorMessage = error.message || errorMessage;
         }
       }
-      
+
       Alert.alert('Erro', errorMessage);
     } finally {
       setIsLoading(false);
@@ -77,16 +78,16 @@ export default function RecoverPassword() {
           <>
             <Text className="mb-2 text-lg">Recuperar senha:</Text>
             <View className="flex-row gap-4">
-              <TextInput 
-                placeholder="Digite o email" 
+              <TextInput
+                placeholder="Digite o email"
                 className="flex-1"
                 value={email}
                 onChangeText={setEmail}
                 keyboardType="email-address"
                 autoCapitalize="none"
               />
-              <Button 
-                className="rounded-xl" 
+              <Button
+                className="rounded-xl"
                 icon={<Ionicons size={24} name="arrow-forward" />}
                 onPress={handlePasswordReset}
                 disabled={isLoading}
