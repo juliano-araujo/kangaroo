@@ -25,7 +25,7 @@ export default function Dias() {
     }
     try {
       await updateDoc(doc(db, 'users', user.uid), {
-        diasSelecionados,
+        days: diasSelecionados,
       });
       Alert.alert('Dias salvos', `Você selecionou ${diasSelecionados} dias.`);
     } catch (error) {
