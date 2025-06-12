@@ -7,6 +7,7 @@ import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '~/utils/firebase';
 import { Ionicons } from '@expo/vector-icons';
 import { FirebaseError } from 'firebase/app';
+import { router, Stack } from 'expo-router';
 
 export default function RecoverPassword() {
   const [email, setEmail] = useState<string>('');
@@ -62,40 +63,51 @@ export default function RecoverPassword() {
   }
 
   return (
-    <LoginContainer>
-      <View className="flex-1 justify-end">
-        {emailSent ? (
-          <View className="items-center justify-center p-4">
-            <Ionicons name="checkmark-circle" size={48} color="green" />
-            <Text className="mt-4 text-center text-lg">
-              E-mail de recuperação enviado com sucesso!
-            </Text>
-            <Text className="text-center text-gray-600">
-              Verifique sua caixa de entrada e siga as instruções para redefinir sua senha.
-            </Text>
-          </View>
-        ) : (
-          <>
-            <Text className="mb-2 text-lg">Recuperar senha:</Text>
-            <View className="flex-row gap-4">
-              <TextInput
-                placeholder="Digite o email"
-                className="flex-1"
-                value={email}
-                onChangeText={setEmail}
-                keyboardType="email-address"
-                autoCapitalize="none"
-              />
-              <Button
-                className="rounded-xl"
-                icon={<Ionicons size={24} name="arrow-forward" />}
-                onPress={handlePasswordReset}
-                disabled={isLoading}
-              />
+    <>
+      <Stack.Screen />
+      <LoginContainer>
+        <View className="flex-1 justify-end">
+          {emailSent ? (
+            <View className="items-center justify-center p-4">
+              <Ionicons name="checkmark-circle" size={48} color="green" />
+              <Text className="mt-4 text-center text-lg">
+                E-mail de recuperação enviado com sucesso!
+              </Text>
+              <Text className="text-center text-gray-600">
+                Verifique sua caixa de entrada e siga as instruções para redefinir sua senha.
+              </Text>
             </View>
-          </>
-        )}
-      </View>
-    </LoginContainer>
+          ) : (
+            <>
+              <Text className="mb-2 text-lg">Recuperar senha:</Text>
+              <View className="gap-4">
+                <TextInput
+                  placeholder="Digite o email"
+                  className=""
+                  value={email}
+                  onChangeText={setEmail}
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                />
+                <View className="flex-row gap-4">
+                  <Button
+                    variant="secondary"
+                    className="flex-1"
+                    title="Voltar"
+                    onPress={() => router.back()}
+                  />
+                  <Button
+                    className="rounded-xl"
+                    icon={<Ionicons size={24} name="arrow-forward" />}
+                    onPress={handlePasswordReset}
+                    disabled={isLoading}
+                  />
+                </View>
+              </View>
+            </>
+          )}
+        </View>
+      </LoginContainer>
+    </>
   );
 }
