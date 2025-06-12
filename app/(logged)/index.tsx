@@ -1,11 +1,17 @@
+import { signOut } from 'firebase/auth';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Button } from '~/components/Button';
 import CustomButton from '~/components/CustomButton';
+import { auth } from '~/utils/firebase';
 
 export default function Home() {
+  async function logOut() {
+    await signOut(auth);
+  }
+
   const buttons = [
     { id: 1, href: '/exercicios', icon: 'dumbbell', name: 'Exercicios' },
     { id: 2, href: '/dias', icon: 'calendar', name: 'Dias' },
-    { id: 3, href: '/login', icon: 'users', name: 'Login' },
     { id: 4, href: '/dados-aerobicos', icon: 'dumbbell', name: 'Dados Aeróbicos' },
   ];
 
@@ -20,6 +26,7 @@ export default function Home() {
           name={item.name}
         />
       ))}
+      <Button variant="secondary" title="Sair" onPress={logOut} />
     </SafeAreaView>
   );
 }
