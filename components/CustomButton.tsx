@@ -1,21 +1,28 @@
-import { FontAwesome5 } from '@expo/vector-icons';
-import { Link } from 'expo-router'; // ou de onde você importa o Link
-import { Text, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import type { ComponentProps } from 'react';
+import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import { cn } from '~/utils/tailwind';
 
-type CustomButtonProps = {
-  id: string | number;
-  href: any;
-  icon: string;
+type IoniconName = ComponentProps<typeof Ionicons>['name'];
+
+type CustomButtonProps = TouchableOpacityProps & {
+  icon: IoniconName;
   name: string;
+  className?: string;
 };
 
-export default function CustomButton({ id, href, icon, name }: CustomButtonProps) {
+function CustomButton({ icon, name, className, ...props }: CustomButtonProps) {
   return (
-    <Link key={id} href={href} asChild>
-      <TouchableOpacity className="mb-4 flex-row items-center rounded-xl border border-gray-200 bg-white p-4 shadow-md">
-        <FontAwesome5 name={icon} size={28} color="#4A5568" className="mr-4" />
-        <Text className="text-lg font-semibold text-gray-700">{name}</Text>
-      </TouchableOpacity>
-    </Link>
+    <TouchableOpacity
+      className={cn(
+        'mb-4 flex-row items-center rounded-xl border border-border bg-card p-4 shadow-md',
+        className
+      )}
+      {...props}>
+      <Ionicons name={icon} size={28} color="#4A5568" className="mr-4" />
+      <Text className="text-lg font-semibold text-foreground">{name}</Text>
+    </TouchableOpacity>
   );
 }
+
+export default CustomButton;
