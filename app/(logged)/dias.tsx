@@ -36,12 +36,12 @@ export default function Dias() {
   return (
     <>
       <Stack.Screen options={{ title: 'Dias' }} />
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }} className="bg-white">
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }} className="bg-background">
         <View className="flex-1 p-6">
           {/* Informação do Exercício */}
           <View className="mb-8 flex-row items-center justify-start">
-            <FontAwesome5 name="calendar" size={28} color="#4A5568" className="mr-4" />
-            <Text className="text-2xl font-bold text-gray-800">Dias</Text>
+            <FontAwesome5 name="calendar" size={28} color="#14121a" className="mr-4" />
+            <Text className="text-2xl font-bold text-foreground">Dias</Text>
           </View>
 
           {/* Centralizar QuantitySelector e botão */}
