@@ -12,8 +12,8 @@ export default function Home() {
 
   return (
     <SafeAreaView className="p-4">
-      <Link href="/exercicios" asChild>
-        <CustomButton icon="barbell" name="Exercicios" />
+      <Link href="/strength" asChild>
+        <CustomButton icon="barbell" name="Força" />
       </Link>
       <Link href="/aerobics" asChild>
         <CustomButton icon="bicycle" name="Aeróbicos" />

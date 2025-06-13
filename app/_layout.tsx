@@ -1,8 +1,10 @@
-import { Stack } from 'expo-router';
+import { SplashScreen, Stack } from 'expo-router';
 import { SplashScreenController } from '~/components/splash';
 import { SessionProvider, useSession } from '~/contexts/session-provider';
 
 import '../global.css';
+
+SplashScreen.preventAutoHideAsync();
 
 export default function Root() {
   return (
@@ -14,7 +16,11 @@ export default function Root() {
 }
 
 function RootNavigator() {
-  const { user } = useSession();
+  const { user, isLoading } = useSession();
+
+  if (isLoading) {
+    return null;
+  }
 
   return (
     <Stack

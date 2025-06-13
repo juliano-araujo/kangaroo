@@ -9,17 +9,11 @@ export default function NotFoundScreen() {
     <>
       <Stack.Screen options={{ title: 'Oops!' }} />
       <Container>
-        <Text className={styles.title}>{"This screen doesn't exist."}</Text>
-        <Link href="/" className={styles.link}>
-          <Text className={styles.linkText}>Go to home screen!</Text>
+        <Text className="text-xl font-bold">{"This screen doesn't exist."}</Text>
+        <Link href="/" className="mt-4 pt-4">
+          <Text className="text-base text-primary">Go to home screen!</Text>
         </Link>
       </Container>
     </>
   );
 }
-
-const styles = {
-  title: `text-xl font-bold`,
-  link: `mt-4 pt-4`,
-  linkText: `text-base text-[#2e78b7]`,
-};
